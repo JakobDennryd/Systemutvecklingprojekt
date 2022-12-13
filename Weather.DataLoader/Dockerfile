@@ -1,4 +1,4 @@
-﻿# Build Stage
+# Build Stage
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
 WORKDIR /source
 COPY . .
@@ -10,5 +10,5 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0-focal
 WORKDIR /app
 COPY --from=build /app ./
 
-
-ENTRYPOINT ["dotnet", "Weather.DataLoader.dll"] 
+ 
+ENTRYPOINT ["dotnet", "Weather.DataLoader.dll"]

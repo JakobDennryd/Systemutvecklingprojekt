@@ -1,4 +1,4 @@
-﻿# Build Stage
+# Build Stage
 FROM mcr.microsoft.com/dotnet/sdk:6.0-focal AS build
 WORKDIR /source
 COPY . .
@@ -11,5 +11,5 @@ WORKDIR /app
 COPY --from=build /app ./
 
 EXPOSE 5000
-
-ENTRYPOINT ["dotnet", "Weather.Precipitation.dll"] 
+ 
+ENTRYPOINT ["dotnet", "Weather.Precipitation.dll"]
