@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using Weather.DataLoader.Models;
 
 IConfiguration config = new ConfigurationBuilder()
-    .AddJsonFile("appsetting.json")
+    .AddJsonFile("appSetting.json")
     .AddEnvironmentVariables()
     .Build();
 
