@@ -13,10 +13,8 @@ builder.Services.Configure<WeatherDataConfig>(builder.Configuration.GetSection("
 
 builder.Services.AddDbContext<WeatherReportDbContext>(opts =>
 {
-    opts.EnableSensitiveDataLogging();
-    opts.EnableDetailedErrors();
-    opts.UseNpgsql(builder.Configuration.GetConnectionString("AppDb"));
-}, ServiceLifetime.Transient
+    opts.UseSqlServer(builder.Configuration.GetConnectionString("AppDb"));
+}
 );
 
 var app = builder.Build();

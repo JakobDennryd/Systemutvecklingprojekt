@@ -6,15 +6,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<PrecipDbContext>(opts =>
 {
-    opts.EnableSensitiveDataLogging();
-    opts.EnableDetailedErrors();
-    opts.UseNpgsql(builder.Configuration.GetConnectionString("AppDb"));
-}, ServiceLifetime.Transient
+    opts.UseSqlServer(builder.Configuration.GetConnectionString("AppDb"));
+}
 );
 
 var app = builder.Build();
-
-
 
 app.MapGet("/observation/{zip}", async (string zip, [FromQuery] int? days, PrecipDbContext db) =>
 {

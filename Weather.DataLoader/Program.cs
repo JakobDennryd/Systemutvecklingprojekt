@@ -30,12 +30,12 @@ var zipCodes = new List<string>
 Console.WriteLine("Starting Data Load");
 
 var temperatureHttpClient = new HttpClient();
-temperatureHttpClient.BaseAddress = new Uri($"http://{tempServiceHost}:{tempServicePort}");
+temperatureHttpClient.BaseAddress = new Uri($"https://weathertemperature-app--niiauo4.wittyglacier-72cc93fd.northeurope.azurecontainerapps.io/");
 
 var precipHttpClient = new HttpClient();
-precipHttpClient.BaseAddress = new Uri($"http://{precipServiceHost}:{precipServicePort}");
+precipHttpClient.BaseAddress = new Uri($"https://weatherprecipitation-app--yubyps0.wittyglacier-72cc93fd.northeurope.azurecontainerapps.io");
 
-foreach(var code in zipCodes)
+foreach (var code in zipCodes)
 {
     Console.WriteLine($"Processing Zip Code: {code}");
 

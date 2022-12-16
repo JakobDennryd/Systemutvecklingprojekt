@@ -58,7 +58,7 @@ namespace Weather.Report.Logic
                 CreatedOn = DateTime.UtcNow,
             };
 
-            _ctx.Add(report);
+            await _ctx.AddAsync(report);
             await _ctx.SaveChangesAsync();
 
             return report;
@@ -116,7 +116,7 @@ namespace Weather.Report.Logic
             var host = _weatherDataConfig.TempDataHost;
             var port = _weatherDataConfig.TempDataPort;
 
-            return $"{protocol}://{host}:{port}/observation/{zip}?days={days}";
+            return $"{host}/observation/{zip}?days={days}";
         }
 
         private string BuildPrecipitationEndPoint(string zip, int days)
@@ -125,7 +125,7 @@ namespace Weather.Report.Logic
             var host = _weatherDataConfig.PrecipDataHost;
             var port = _weatherDataConfig.PrecipDataPort;
 
-            return $"{protocol}://{host}:{port}/observation/{zip}?days={days}";
+            return $"{host}/observation/{zip}?days={days}";
         }
     }
 }

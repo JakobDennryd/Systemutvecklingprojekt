@@ -6,10 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<TemperatureDbContext>(opts =>
 {
-    opts.EnableSensitiveDataLogging();
-    opts.EnableDetailedErrors();
-    opts.UseNpgsql(builder.Configuration.GetConnectionString("AppDb"));
-}, ServiceLifetime.Transient
+    opts.UseSqlServer(builder.Configuration.GetConnectionString("AppDb"));
+}
 );
 
 var app = builder.Build();
@@ -29,9 +27,8 @@ app.MapGet("/observation/{zip}", async (string zip, [FromQuery] int? days, Tempe
 
 });
 
-app.MapPost("/observation", async (Temperature temperature, TemperatureDbContext db) =>
+app.MapPost("/observation", async ([FromBody] Temperature temperature, TemperatureDbContext db) =>
 {
-    temperature.CreatedOn = temperature.CreatedOn.ToUniversalTime();
     await db.AddAsync(temperature);
     await db.SaveChangesAsync();
 });
